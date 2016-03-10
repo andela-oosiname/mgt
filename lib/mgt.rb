@@ -1,23 +1,31 @@
 require "mgt/version"
 require "mgt/util"
 require "mgt/dependencies"
+require "routing/router"
+require "routing/route"
+require "routing/mapper"
 
 module Mgt
   class Application
-    def call(env)
-      @req = Rack::Request.new(env)
-      path = @req.path_info
-      request_method = @req.request_method.downcase
-      return [500, {}, []] if path == "/favicon.ico"
-      controller, action = get_controller_and_action(path, request_method)
-      response = controller.new.send(action)
-      [200, { "Content-Type" => "text/html" }, [response]]
+    attr_reader :routes
+
+    def initialize
+      @routes = Routing::Router.new
     end
 
-    def get_controller_and_action(path, verb)
-      _, controller, action, others = path.split("/", 4)
-      controller_class = controller.capitalize + "Controller"
-      [Object.const_get(controller_class), action]
+    def call(env)
+      @request = Rack::Request.new(env)
+      route = mapper.map_to_route(@request)
+
+      if route
+        response = route.dispatch
+        return [200, { "Content-Type" => "text/html" }, [response]]
+      end
+      [404, {}, ["Route not found"]]
+    end
+
+    def mapper
+      @mapper ||= Routing::Mapper.new(routes.endpoints)
     end
   end
 end
