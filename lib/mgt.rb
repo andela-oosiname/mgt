@@ -1,4 +1,6 @@
 require "mgt/version"
+require "mgt/util"
+require "mgt/dependencies"
 
 module Mgt
   class Application
