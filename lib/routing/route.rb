@@ -2,18 +2,18 @@ require "mgt/util"
 module Mgt
   module Routing
     class Route
-      attr_reader :klass_name, :request, :method_name
-      def initialize(request, klass_and_method)
-        @klass_name, @method_name = klass_and_method
+      attr_reader :controller_name, :request, :action
+      def initialize(request, class_and_method)
+        @controller_name, @action = class_and_method
         @request = request
       end
 
-      def klass
-        klass_name.to_constant
+      def controller
+        controller_name.to_constant
       end
 
       def dispatch
-        klass.new(request).send(method_name)
+        controller.new(request).send(action)
       end
     end
   end

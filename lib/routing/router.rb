@@ -16,7 +16,7 @@ module Mgt
 
       private
 
-      def pattern_for(path)
+      def pattern(path)
         placeholders = []
         path.gsub!(/(:\w+)/) do |match|
           placeholders << match[1..-1].freeze
@@ -25,18 +25,20 @@ module Mgt
         [/^#{path}$/, placeholders]
       end
 
-      def controller_and_action_for(path_to)
-        controller_path, action = path_to.split("#")
+      def controller_and_action(path)
+        controller_path, action = path.split("#")
         controller = "#{controller_path.capitalize}Controller"
         [controller, action.to_sym]
       end
 
-      [:get, :post, :put, :patch, :delete].each do |method_name|
+      http_verbs = [:get, :post, :put, :patch, :delete]
+
+      http_verbs.each do |method_name|
         define_method(method_name) do |path, to:|
           path = "/#{path}" unless path[0] = "/"
-          klass_and_method = controller_and_action_for(to)
+          klass_and_method = controller_and_action(to)
           @route_data = { path: path,
-                          pattern: pattern_for(path),
+                          pattern: pattern(path),
                           klass_and_method: klass_and_method
                         }
           endpoints[method_name] << @route_data
