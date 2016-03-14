@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/andela-oosiname/mgt.svg?branch=master)](https://travis-ci.org/andela-oosiname/mgt)
+[![Code Climate](https://codeclimate.com/github/andela-oosiname/mgt/badges/gpa.svg)](https://codeclimate.com/github/andela-oosiname/mgt)
+[![Test Coverage](https://codeclimate.com/github/andela-oosiname/mgt/badges/coverage.svg)](https://codeclimate.com/github/andela-oosiname/mgt/coverage)
+
 # Mgt
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/mgt`. To experiment with that code, run `bin/console` for an interactive prompt.
