@@ -15,7 +15,7 @@ Style/CollectionMethods:
     reduce: inject
 Style/DotPosition:
   Description: Checks the position of the dot in multi-line method calls.
-  StyleGuide: https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide
   Enabled: true
   EnforcedStyle: trailing
   SupportedStyles:
