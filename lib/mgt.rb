@@ -26,7 +26,6 @@ module Mgt
     end
 
     def mapper
-      require "pry"; binding.pry
       @mapper ||= Routing::Mapper.new(routes.endpoints)
     end
   end
