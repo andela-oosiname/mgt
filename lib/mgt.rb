@@ -19,10 +19,10 @@ module Mgt
       route = mapper.map_to_route(@request)
 
       if route
-        response = route.dispatch
-        return [200, { "Content-Type" => "text/html" }, [response]]
+        route.dispatch
+      else
+        [404, {}, ["Page not found"]]
       end
-      [404, {}, ["Page not found"]]
     end
 
     def mapper

@@ -8,13 +8,22 @@ module Mgt
         @request = request
       end
 
-      def controller
+      def controller_class
         controller_name.to_constant
       end
 
       def dispatch
-        controller.new(request).send(action)
+        controller = controller_class.new(request)
+        response = controller.send(action)
+        if controller.get_response
+          controller.get_response
+        else
+          controller.render(action)
+          controller.get_response
+          # return [200, { "Content-Type" => "text/html" }, [response]]
+        end
       end
+
     end
   end
 end
