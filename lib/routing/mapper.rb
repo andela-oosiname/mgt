@@ -3,6 +3,7 @@ module Mgt
     class Mapper
       def initialize(endpoints)
         @endpoints = endpoints
+        # require "pry"; binding.pry
       end
 
       def map_to_route(request)

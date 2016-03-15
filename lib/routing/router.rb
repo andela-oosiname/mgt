@@ -25,8 +25,8 @@ module Mgt
         [/^#{path}$/, placeholders]
       end
 
-      def controller_and_action(path)
-        controller_path, action = path.split("#")
+      def controller_and_action_for(path_to)
+        controller_path, action = path_to.split("#")
         controller = "#{controller_path.capitalize}Controller"
         [controller, action.to_sym]
       end
@@ -36,7 +36,7 @@ module Mgt
       http_verbs.each do |method_name|
         define_method(method_name) do |path, to:|
           path = "/#{path}" unless path[0] = "/"
-          klass_and_method = controller_and_action(to)
+          klass_and_method = controller_and_action_for(to)
           @route_data = { path: path,
                           pattern: pattern(path),
                           klass_and_method: klass_and_method
