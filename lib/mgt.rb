@@ -5,6 +5,9 @@ require "mgt/base_controller"
 require "routing/router"
 require "routing/route"
 require "routing/mapper"
+require "orm/active_record"
+require "orm/database"
+require "orm/query_generator"
 
 module Mgt
   class Application

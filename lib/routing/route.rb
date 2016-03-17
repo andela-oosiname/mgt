@@ -23,7 +23,6 @@ module Mgt
           # return [200, { "Content-Type" => "text/html" }, [response]]
         end
       end
-
     end
   end
 end

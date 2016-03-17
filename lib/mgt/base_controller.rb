@@ -11,7 +11,7 @@ module Mgt
       request.params
     end
 
-    def response(body, status = 200, header={})
+    def response(body, status = 200, header = {})
       @response = Rack::Response.new(body, status, header)
     end
 
@@ -31,7 +31,7 @@ module Mgt
     def get_instance_variables
       vars = {}
       instance_variables.each do |var|
-        key = var.to_s.gsub("@","").to_sym
+        key = var.to_s.delete("@").to_sym
         vars[key] = instance_variable_get(var)
       end
       vars
