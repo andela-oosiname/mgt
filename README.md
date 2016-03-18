@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/andela-oosiname/mgt.svg?branch=master)](https://travis-ci.org/andela-oosiname/mgt)
 [![Code Climate](https://codeclimate.com/github/andela-oosiname/mgt/badges/gpa.svg)](https://codeclimate.com/github/andela-oosiname/mgt)
-[![Test Coverage](https://codeclimate.com/github/andela-oosiname/mgt/badges/coverage.svg)](https://codeclimate.com/github/andela-oosiname/mgt/coverage)
+[![Coverage Status](https://coveralls.io/repos/github/andela-oosiname/mgt/badge.svg?branch=master)](https://coveralls.io/github/andela-oosiname/mgt?branch=master)
+
 
 # Mgt
 
