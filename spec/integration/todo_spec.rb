@@ -59,4 +59,10 @@ describe "Create Todo Spec", type: :feature do
     first(".view").click
     expect(page).to have_content(Todo.last.title)
   end
+
+  it "renders 404 page if path doesnt exist" do
+    visit "/todoss"
+
+    expect(page).to have_content("Page not found")
+  end
 end

@@ -35,10 +35,6 @@ class TodoController < Mgt::BaseController
   def update
     @todo = Todo.find_by(id: params["id"])
     @todo.update(title: params["title"], body: params["body"], status: params["status"])
-    # @todo.title = params["title"]
-    # @todo.body = params["body"]
-    # @todo.status = params["status"]
-    # @todo.save
   end
 
   def destroy
