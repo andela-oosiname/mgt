@@ -43,6 +43,7 @@ class TodoController < Mgt::BaseController
   def destroy
     @todo = Todo.find_by(id: params["id"])
     @todo.destroy
+
     redirect_to "/todo"
   end
 end
