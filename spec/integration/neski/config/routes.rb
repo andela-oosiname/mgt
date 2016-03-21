@@ -1,4 +1,5 @@
 NeskiApplication.routes.draw do
+  get "/", to: "todo#index"
   get "/todo", to: "todo#index"
   get "/todo/new", to: "todo#new"
   get "/todo/:id/edit", to: "todo#edit"

@@ -1,4 +1,5 @@
 source "https://rubygems.org"
-gem "codeclimate-test-reporter", group: :test, require: nil
+gem "simplecov", require: false, group: :test
+gem "sqlite3"
 gem "simplecov", require: false, group: :test
 gemspec

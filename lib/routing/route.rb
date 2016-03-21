@@ -14,7 +14,7 @@ module Mgt
 
       def dispatch
         controller = controller_class.new(request)
-        response = controller.send(action)
+        controller.send(action)
         if controller.get_response
           controller.get_response
         else

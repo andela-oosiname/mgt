@@ -100,11 +100,11 @@
 
             <div class="col-sm-4"> <%= todo.title %> </div>
             <div class="col-sm-2"> <%= todo.created_at[0..10] %> </div>
-            <div class="col-sm-1"><a href="/todo/<%= todo.id %>"><button type="button" class="btn btn-success">View</button></a></div>
-            <div class="col-sm-1"><a href="/todo/<%= todo.id %>/edit"><button type="button" class="btn btn-primary">Edit</button></a></div>
+            <div class="col-sm-1"><a href="/todo/<%= todo.id %>" class="btn btn-success view">View </a></div>
+            <div class="col-sm-1"><a href="/todo/<%= todo.id %>/edit" class="btn btn-primary edit">Edit</a></div>
             <form action="/todo/<%= todo.id %>"  method="post">
               <input type="hidden" class="form-control" name="_method" value ="delete" />
-              <button class="btn btn-sm  btn-danger">Delete</button>
+              <button class="btn btn-sm  btn-danger delete">Delete</button>
             </form>
           </div>
           <% end %>

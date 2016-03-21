@@ -10,7 +10,7 @@ module Mgt
 
     def self.all
       data = Database.execute "SELECT #{attributes_keys.join(',')}
-      FROM #{@table}"
+      FROM #{@table} ORDER BY id DESC"
       data.map do |row|
         map_object(row)
       end
@@ -64,7 +64,7 @@ module Mgt
       Database.execute "DELETE FROM #{table_name} WHERE id = ?", id
     end
 
-    def destroy_all
+    def self.destroy_all
       Database.execute "DELETE FROM #{@table}"
     end
   end
