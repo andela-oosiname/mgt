@@ -30,6 +30,11 @@ module Mgt
       make_methods
     end
 
+    def self.drop_table(table_name)
+      query = "DROP TABLE IF EXISTS #{table_name}"
+      Database.execute(query)
+    end
+
     def self.make_methods
       mtds = @attributes.keys.map(&:to_sym)
       mtds.each { |mtd| attr_accessor mtd }
