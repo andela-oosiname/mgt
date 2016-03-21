@@ -30,15 +30,19 @@ class TodoController < Mgt::BaseController
     @todo.status = "pending"
     @todo.created_at = Time.now.to_s
     @todo.save
+
+    redirect_to "/todo/#{Todo.last.id}"
   end
 
   def update
     @todo = Todo.find_by(id: params["id"])
     @todo.update(title: params["title"], body: params["body"], status: params["status"])
+    redirect_to "/todo/#{@todo.id}"
   end
 
   def destroy
     @todo = Todo.find_by(id: params["id"])
     @todo.destroy
+    redirect_to "/todo"
   end
 end

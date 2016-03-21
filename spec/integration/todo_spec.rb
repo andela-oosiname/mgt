@@ -16,6 +16,7 @@ describe "Create Todo Spec", type: :feature do
   it "has index page" do
     seed
     visit "/todo"
+
     expect(page).to have_selector(".add-button")
     expect(page).to have_content("Total Tasks")
     expect(page).to have_content(Todo.last.title)
@@ -27,7 +28,7 @@ describe "Create Todo Spec", type: :feature do
     fill_in("title", with: "Holiday")
     fill_in("body", with: "Take a trip to Barbados")
     click_button("Add New Todo")
-    visit "/todo"
+
     expect(page).to have_content("Holiday")
   end
 
@@ -35,11 +36,11 @@ describe "Create Todo Spec", type: :feature do
     seed
     visit "/todo"
 
-    expect(page).to have_content(Todo.last.title)
     first(".edit").click
     fill_in("title", with: "get carton")
     fill_in("body", with: "Take a trip to Barbados")
     click_button("Update Todo")
+
     expect(Todo.last.title).to eq "get carton"
   end
 
@@ -47,7 +48,6 @@ describe "Create Todo Spec", type: :feature do
     seed 10
     visit "/todo"
 
-    expect(page).to have_content(Todo.first.title)
     first(".delete").click
     expect(Todo.all.length).to eq 9
   end

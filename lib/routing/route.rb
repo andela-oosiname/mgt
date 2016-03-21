@@ -15,13 +15,8 @@ module Mgt
       def dispatch
         controller = controller_class.new(request)
         controller.send(action)
-        if controller.get_response
-          controller.get_response
-        else
-          controller.render(action)
-          controller.get_response
-          # return [200, { "Content-Type" => "text/html" }, [response]]
-        end
+        controller.render(action) unless controller.get_response
+        controller.get_response
       end
     end
   end
