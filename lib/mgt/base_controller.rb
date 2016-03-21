@@ -3,9 +3,6 @@ require "tilt"
 module Mgt
   class BaseController
     attr_reader :request
-    def initialize(env)
-      @request = Rack::Request.new(env)
-    end
 
     def params
       request.params
@@ -26,6 +23,10 @@ module Mgt
     def render_template(view_name, locals = {})
       template = Tilt::ERBTemplate.new(File.join(APP_ROOT, "app", "views", controller_name, "#{view_name}.html.erb"))
       template.render(self, locals.merge(get_instance_variables))
+    end
+
+    def redirect_to(url)
+      @response = Rack::Response.new({}, 302, "location" => url)
     end
 
     def get_instance_variables
