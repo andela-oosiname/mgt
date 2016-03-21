@@ -30,11 +30,6 @@ module Mgt
       make_methods
     end
 
-    def self.drop_table(table_name)
-      query = "DROP TABLE IF EXISTS #{table_name}"
-      Database.execute(query)
-    end
-
     def self.make_methods
       mtds = @attributes.keys.map(&:to_sym)
       mtds.each { |mtd| attr_accessor mtd }
@@ -101,7 +96,7 @@ module Mgt
     end
 
     def update_records_placeholders
-      columns = self.class.properties_keys
+      columns = self.class.attributes_keys
       columns.delete(:id)
       columns.map { |col| "#{col}=?" }.join(",")
     end
