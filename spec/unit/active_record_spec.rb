@@ -96,7 +96,7 @@ describe "Active Record queries" do
       todo = Todo.last
       Todo.destroy(todo.id)
 
-      expect(Todo.all.length).to eq 4
+      expect(Todo.all.length).to eq 3
     end
   end
 
