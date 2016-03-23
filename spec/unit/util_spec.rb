@@ -18,10 +18,6 @@ describe "Utility methods" do
       it { expect("PERSONController".to_snake_case).to eq "person_controller" }
     end
 
-    context "Person8Controller" do
-      it { expect("Person8Controller".to_snake_case).to eq "person8_controller" }
-    end
-
     context "personcontroller" do
       it { expect("personcontroller".to_snake_case).to eq "personcontroller" }
     end
