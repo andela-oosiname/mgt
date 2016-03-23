@@ -4,7 +4,6 @@ module Mgt
       attr_accessor :endpoints
       def draw(&block)
         instance_eval &block
-        #find out the  difference between instance eval and yield
       end
 
       def root(to)
