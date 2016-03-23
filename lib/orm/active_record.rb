@@ -25,7 +25,8 @@ module Mgt
         end
         all_attributes << attributes.join(" ")
       end
-      query = "CREATE TABLE IF NOT EXISTS #{@table} (#{all_attributes.join(', ')})"
+      query = "CREATE TABLE
+      IF NOT EXISTS #{@table} (#{all_attributes.join(', ')})"
       Database.execute(query)
       make_methods
     end
@@ -68,7 +69,6 @@ module Mgt
     def get_values
       attributes = self.class.attributes_keys
       attributes.delete(:id)
-      # send sends a message to an object instance and its ancestors in class hierarchy until some method reacts (because its name matches the first argument).
       attributes.map { |method| send(method) }
     end
 

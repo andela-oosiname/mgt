@@ -36,7 +36,11 @@ class TodoController < Mgt::BaseController
 
   def update
     @todo = Todo.find_by(id: params["id"])
-    @todo.update(title: params["title"], body: params["body"], status: params["status"])
+    @todo.update(
+      title: params["title"],
+      body: params["body"],
+      status: params["status"]
+    )
     redirect_to "/todo/#{@todo.id}"
   end
 

@@ -42,6 +42,10 @@ module Mgt
       map_object(row)
     end
 
+    def self.destroy(id)
+      Database.execute "DELETE FROM #{table_name} WHERE id = ?", id
+    end
+
     def save
       table_name = self.class.table_name
       if id
