@@ -37,39 +37,40 @@ View a sample app built using mgt framework [Here](https://github.com/andela-oos
 ### Routing
 Routing with Mgt deals with directing requests to the appropriate controllers. A sample route file is:
 
-mgt supports GET, DELETE, PATCH, POST, PUT requests.
-
 ```ruby
 TodoApplication.routes.draw do
-  get "/users", to: "users#index"
-  get "/users/new", to: "users#new"
-  post "/users", to: "users#create"
-  get "/users/:id", to: "users#show"
-  get "/users/:id/edit", to: "users#edit"
-  patch "/users/:id", to: "users#update"
-  put "/users/:id", to: "users#update"
-  delete "/users/:id", to: "users#destroy"
+  get "/todo", to: "todo#index"
+  get "/todo/new", to: "todo#new"
+  post "/todo", to: "todo#create"
+  get "/todo/:id", to: "todo#show"
+  get "/todo/:id/edit", to: "todo#edit"
+  patch "/todo/:id", to: "todo#update"
+  put "/todo/:id", to: "todo#update"
+  delete "/todo/:id", to: "todo#destroy"
 end
 ```
+Mgt supports GET, DELETE, PATCH, POST, PUT requests.
+
 
 ### Models
-All models to be used with the Hemp framework are to inherit from the ActiveRecord class provided by Mgt, in order to access the rich ORM functionalities provided. The ActiveRecord class acts as an interface between the model class and its database representation. A sample model file is provided below:
+All models to be used with the Mgt framework are to inherit from the ActiveRecord class provided by Mgt, in order to access the rich ORM functionalities provided. The ActiveRecord class acts as an interface between the model class and its database representation. A sample model file is provided below:
 
 ```ruby
-class Fellow < Hemp::BaseRecord
-  table :users
-  property :id, type: :integer, primary_key: true
-  property :first_name, type: :text, nullable: false
-  property :email, type: :boolean, nullable: false
-
+class Todo < Mgt::BaseRecord
+  table :todo
+  attribute :id, type: :integer, primary_key: true
+  attribute :title, type: :text, nullable: false
+  attribute :body, type: :text, nullable: false
+  attribute :status, type: :text, nullable: false
+  attribute :created_at, type: :text, nullable: false
   create_table
 end
 ```
 The `table` method provided stores the table name used while creating the table record in the database.
 
-The `property` method is provided to declare table columns, and their attributes. The first argument to `property` is the column name, while subsequent hash arguments are used to provide information about attributes.
+The `attribute` method is provided to declare table columns, and their attributes. The first argument to `attribute` is the column name, while subsequent hash arguments are used to provide information about attributes.
 
-The `type` argument represents the data type of the column. Supported data types by Hemp are:
+The `type` argument represents the data type of the column. Supported data types by Mgt are:
 
   * integer (for numeric values)
   * boolean (for boolean values [true or false])
@@ -79,7 +80,7 @@ The `primary_key` argument is used to specify that the column should be used as 
 
 The `nullable` argument is used to specify whether a column should have null values, or not.
 
-While creating models, the id property declaration is optional. If this is is not provided, the Hemp ORM adds it automatically, and sets it as the primary key. Thus, it should only be set if you'd like to use a different type as the primary key.
+While creating models, the id property declaration is optional. If this is is not provided, the Mgt ORM adds it automatically, and sets it as the primary key. Thus, it should only be set if you'd like to use a different type as the primary key.
 
 On passing in the table name, and its properties, a call should be made to the `create_table` method to persist the model to database by creating the table.
 
@@ -87,26 +88,25 @@ On passing in the table name, and its properties, a call should be made to the `
 ### Controllers
 Controllers are key to the MVC structure, as they handle receiving requests, interacting with the database, and providing responses. Controllers are placed in the controllers folder, which is nested in the app folder.
 
-All controllers should inherit from the BaseController class provided by Hemp to inherit methods which simplify accessing request parameters and returning responses by rendering views.
+All controllers should inherit from the BaseController class provided by Mgt to inherit methods which simplify accessing request parameters and returning responses by rendering views.
 
 A sample structure for a controller file is:
 
 ```ruby
-class UsersController < Mgt::BaseController
+class todoController < Mgt::BaseController
   def index
-    @users = User.all
+    @todos = Todo.all
   end
 
   def new
   end
 
   def show
-    fellow
-    render :show_full
+    todo = Todo.find(params[:id])
   end
 
   def destroy
-    fellow.destroy
+    todo.destroy
     redirect_to "/"
   end
 end
@@ -120,10 +120,10 @@ Explicitly calling `render` to render template files is optional. If it's not ca
 ### Views
 Currently, view templates are handled through the Tilt gem, with the Erubis template engine. See https://github.com/rtomayko/tilt for more details.
 
-View templates are mapped to controller actions and must assume the same nomenclature as their respective actions.Erbuis is used as the templating engine and files which are views are required to have the .erb file extension after the .html extension. Views are placed inside the `app/views` folder. A view to be rendered for the new action in the UsersController for example is saved as `new.html.erb` in the users folder, nested in the views folder.
+View templates are mapped to controller actions and must assume the same nomenclature as their respective actions.Erbuis is used as the templating engine and files which are views are required to have the .erb file extension after the .html extension. Views are placed inside the `app/views` folder. A view to be rendered for the new action in the todoController for example is saved as `new.html.erb` in the todo folder, nested in the views folder.
 
 ### External Dependencies
-The Hemp framework has a few dependencies. These are listed below, with links to source pages for each.
+The Mgt framework has a few dependencies. These are listed below, with links to source pages for each.
 
   * sqlite3     - https://github.com/sparklemotion/sqlite3-ruby
   * erubis      - https://rubygems.org/gems/erubis
