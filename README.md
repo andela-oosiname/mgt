@@ -37,8 +37,6 @@ View a sample app built using mgt framework [Here](https://github.com/andela-oos
 ### Routing
 Routing with Mgt deals with directing requests to the appropriate controllers. A sample route file is:
 
-mgt supports GET, DELETE, PATCH, POST, PUT requests.
-
 ```ruby
 TodoApplication.routes.draw do
   get "/todo", to: "todo#index"
@@ -51,6 +49,8 @@ TodoApplication.routes.draw do
   delete "/todo/:id", to: "todo#destroy"
 end
 ```
+Mgt supports GET, DELETE, PATCH, POST, PUT requests.
+
 
 ### Models
 All models to be used with the Mgt framework are to inherit from the ActiveRecord class provided by Mgt, in order to access the rich ORM functionalities provided. The ActiveRecord class acts as an interface between the model class and its database representation. A sample model file is provided below:
