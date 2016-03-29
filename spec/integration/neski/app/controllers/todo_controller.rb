@@ -1,8 +1,4 @@
 class TodoController < Mgt::BaseController
-  def initialize(request)
-    @request = request
-  end
-
   def index
     @pending = Todo.where("status like ?", "%pending%")
     @done = Todo.where("status like ?", "%done%")
