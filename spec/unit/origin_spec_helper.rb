@@ -1,4 +1,4 @@
-module ActiveRecordSpecHelper
+module OriginSpecHelper
   def seed(n = 1)
     n.times do
       todo = Todo.new

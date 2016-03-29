@@ -1,9 +1,9 @@
-class Todo < Mgt::ActiveRecord
-  table :todos
-  attribute :id, type: :integer, primary_key: true
-  attribute :title, type: :text, nullable: false
-  attribute :body, type: :text, nullable: false
-  attribute :status, type: :text, nullable: false
-  attribute :created_at, type: :text, nullable: false
+class Todo < Mgt::Origin
+  to_table :todos
+  property :id, type: :integer, primary_key: true
+  property :title, type: :text, nullable: false
+  property :body, type: :text, nullable: false
+  property :status, type: :text, nullable: false
+  property :created_at, type: :text, nullable: false
   create_table
 end

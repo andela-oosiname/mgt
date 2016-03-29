@@ -1,25 +1,21 @@
 require "spec_helper"
-require_relative "active_record_spec_helper"
-describe "Active Record queries" do
-  include ActiveRecordSpecHelper
+require_relative "origin_spec_helper"
+describe "Origin queries" do
+  include OriginSpecHelper
   after(:each) do
     Todo.destroy_all
   end
 
-  context ".destroy_all" do
+  describe ".destroy_all" do
     it"deletes all rows in a table" do
-      todo = Todo.new
-      todo.title = %w(task1 task2 task3).sample
-      todo.body =  %w(body1 body2 body3).sample
-      todo.status = "pending"
-      todo.created_at = Time.now.to_s
-      todo.save
+      seed 10
+      Todo.destroy_all
 
-      expect(Todo.all.length).to eq 1
+      expect(Todo.all.length).to eq 0
     end
   end
 
-  context ".first" do
+  describe ".first" do
     it "returns first row" do
       seed 3
 
@@ -27,7 +23,7 @@ describe "Active Record queries" do
     end
   end
 
-  context ".last" do
+  describe ".last" do
     it "returns first row" do
       seed 3
 
@@ -35,7 +31,7 @@ describe "Active Record queries" do
     end
   end
 
-  context "#destroy" do
+  describe "#destroy" do
     it "deletes a row in a table" do
       seed 3
       Todo.last.destroy
@@ -44,7 +40,21 @@ describe "Active Record queries" do
     end
   end
 
-  context "#update" do
+  describe "#save" do
+    it "saves a new object into a row" do
+      todo = Todo.new
+      todo.title = %w(task1 task2 task3).sample
+      todo.body =  %w(body1 body2 body3).sample
+      todo.status = "pending"
+      todo.created_at = Time.now.to_s
+      todo.save
+
+      expect(Todo.all.length).to eq 1
+      expect(Todo.last.title).to eq todo.title
+    end
+  end
+
+  describe "#update" do
     it "updates a row" do
       seed 3
       todo = Todo.first
@@ -57,7 +67,7 @@ describe "Active Record queries" do
     end
   end
 
-  context ".find" do
+  describe ".find" do
     it "finds a row by id" do
       seed 3
       todo = Todo.last
@@ -67,7 +77,7 @@ describe "Active Record queries" do
     end
   end
 
-  context "#save" do
+  describe "#save" do
     it "saves an entry" do
       todo = Todo.new
       todo.title = "newtitle"
@@ -80,7 +90,7 @@ describe "Active Record queries" do
     end
   end
 
-  context ".find_by" do
+  describe ".find_by" do
     it "finds a todo by any param" do
       seed 3
       todo = Todo.last
@@ -89,7 +99,7 @@ describe "Active Record queries" do
     end
   end
 
-  context ".destroy" do
+  describe ".destroy" do
     it "deletes a row by id" do
       seed 4
 
@@ -100,7 +110,7 @@ describe "Active Record queries" do
     end
   end
 
-  context ".all" do
+  describe ".all" do
     it "returns all rows in a table" do
       seed 4
       expect(Todo.all.length).to eq 4
