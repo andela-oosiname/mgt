@@ -1,15 +1,15 @@
 module Mgt
-  class ActiveRecord
+  class QueryGenerator
     def self.find_by(finder)
       key = finder.keys[0].to_s
       value = finder.values[0].to_s
-      row = Database.execute("SELECT #{attributes_keys.join(',')}
+      row = Database.execute("SELECT #{properties_keys.join(',')}
       FROM #{@table} WHERE #{key} = ?", value).first
       map_object(row)
     end
 
     def self.all
-      data = Database.execute "SELECT #{attributes_keys.join(',')}
+      data = Database.execute "SELECT #{properties_keys.join(',')}
       FROM #{@table} ORDER BY id DESC"
       data.map do |row|
         map_object(row)
@@ -17,7 +17,7 @@ module Mgt
     end
 
     def self.where(query_pattern, value)
-      data = Database.execute "SELECT #{attributes_keys.join(',')} FROM
+      data = Database.execute "SELECT #{properties_keys.join(',')} FROM
       #{@table} WHERE #{query_pattern}", value
       data.map do |row|
         map_object(row)
@@ -37,7 +37,7 @@ module Mgt
     end
 
     def self.find(id)
-      row = Database.execute("SELECT #{attributes_keys.join(',')}
+      row = Database.execute("SELECT #{properties_keys.join(',')}
       FROM #{@table} WHERE id = ?", id).first
       map_object(row)
     end
