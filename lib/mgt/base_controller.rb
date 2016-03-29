@@ -22,8 +22,14 @@ module Mgt
 
     def render_template(view_name, locals = {})
       template = Tilt::ERBTemplate.new(
-        File.join(APP_ROOT, "app", "views",
-                  controller_name, "#{view_name}.html.erb"))
+        File.join(
+          APP_ROOT,
+          "app",
+          "views",
+          controller_name,
+          "#{view_name}.html.erb"
+        )
+      )
       template.render(self, locals.merge(get_instance_variables))
     end
 
