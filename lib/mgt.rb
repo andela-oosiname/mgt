@@ -1,13 +1,13 @@
-require "mgt/version"
-require "mgt/util"
-require "mgt/dependencies"
 require "mgt/base_controller"
+require "mgt/dependencies"
+require "mgt/util"
+require "mgt/version"
+require "orm/database"
+require "orm/origin"
+require "orm/query_generator"
+require "routing/mapper"
 require "routing/router"
 require "routing/route"
-require "routing/mapper"
-require "orm/origin"
-require "orm/database"
-require "orm/query_generator"
 
 module Mgt
   class Application

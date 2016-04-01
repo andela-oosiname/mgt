@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = ["A simple mvc framework"]
   spec.description   = ["A simple mvc rack framework"]
-  spec.homepage      = "https://github.com/andela-oosiname/mastermind_sname"
+  spec.homepage      = "https://github.com/andela-oosiname/mgt"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
