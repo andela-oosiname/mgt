@@ -3,6 +3,7 @@ module Mgt
   module Routing
     class Route
       attr_reader :controller_name, :request, :action
+
       def initialize(request, class_and_method)
         @controller_name, @action = class_and_method
         @request = request

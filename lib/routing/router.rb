@@ -2,6 +2,7 @@ module Mgt
   module Routing
     class Router
       attr_accessor :endpoints
+
       def draw(&block)
         instance_eval &block
       end

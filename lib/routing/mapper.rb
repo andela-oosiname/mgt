@@ -12,6 +12,7 @@ module Mgt
         result = @endpoints[method].detect do |endpoint|
           match_path_with_pattern path, endpoint
         end
+
         return Route.new(@request, result[:klass_and_method]) if result
       end
 
