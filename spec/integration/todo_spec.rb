@@ -1,10 +1,13 @@
 require "spec_helper"
 require_relative "../unit/origin_spec_helper"
+
 describe "Todo Spec", type: :feature do
- include OriginSpecHelper
+  include OriginSpecHelper
+
   after(:each) do
     Todo.destroy_all
   end
+
   it "has index page" do
     visit "/todo"
 
@@ -15,6 +18,7 @@ describe "Todo Spec", type: :feature do
   it "creates a new todo" do
     visit "/todo/new"
     expect(page).to have_selector(".btn-primary")
+
     fill_in("title", with: "Holiday")
     fill_in("body", with: "Take a trip to Barbados")
     click_button("Add New Todo")
@@ -47,7 +51,7 @@ describe "Todo Spec", type: :feature do
     visit "/todo"
 
     first(".view").click
-    expect(page).to have_content(Todo.last.title)
+    expect(page).to have_content("task10")
   end
 
   it "renders 404 page if path doesnt exist" do

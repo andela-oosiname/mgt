@@ -18,8 +18,9 @@ module Mgt
 
     def self.create_table
       query = "CREATE TABLE
-      IF NOT EXISTS #{@table} (#{get_all_properties.join(', ')})"
+              IF NOT EXISTS #{@table} (#{get_all_properties.join(', ')})"
       Database.execute(query)
+
       make_methods
     end
 
@@ -33,6 +34,7 @@ module Mgt
         end
         all_properties << properties.join(" ")
       end
+
       all_properties
     end
 
@@ -62,6 +64,7 @@ module Mgt
       @properties.each_key.with_index do |value, index|
         model_name.send("#{value}=", row[index])
       end
+
       model_name
     end
 

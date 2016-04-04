@@ -47,6 +47,7 @@ module Mgt
         key = var.to_s.delete("@").to_sym
         vars[key] = instance_variable_get(var)
       end
+
       vars
     end
 

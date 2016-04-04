@@ -5,7 +5,7 @@
 
 # Mgt
 
-Mgt is a MVC mini-framework, modeled after rails. Like Rails, Mgt is built using Ruby. The framework also comes with a minified ORM.
+Mgt is an MVC mini-framework, modeled after rails. Like Rails, Mgt is built using Ruby. The framework also comes with a minified ORM.
 
 Mgt is ligthweight and hence fit for simple and quick applications. It makes available some of the great features of rails.
 
@@ -56,19 +56,19 @@ Mgt supports GET, DELETE, PATCH, POST, PUT requests.
 All models to be used with the Mgt framework are to inherit from the ActiveRecord class provided by Mgt, in order to access the rich ORM functionalities provided. The ActiveRecord class acts as an interface between the model class and its database representation. A sample model file is provided below:
 
 ```ruby
-class Todo < Mgt::BaseRecord
-  table :todo
-  attribute :id, type: :integer, primary_key: true
-  attribute :title, type: :text, nullable: false
-  attribute :body, type: :text, nullable: false
-  attribute :status, type: :text, nullable: false
-  attribute :created_at, type: :text, nullable: false
+class Todo < Mgt::Origin
+  to_table :todos
+  property :id, type: :integer, primary_key: true
+  property :title, type: :text, nullable: false
+  property :body, type: :text, nullable: false
+  property :status, type: :text, nullable: false
+  property :created_at, type: :text, nullable: false
   create_table
 end
 ```
-The `table` method provided stores the table name used while creating the table record in the database.
+The `to_table` method provided stores the table name used while creating the table record in the database.
 
-The `attribute` method is provided to declare table columns, and their attributes. The first argument to `attribute` is the column name, while subsequent hash arguments are used to provide information about attributes.
+The `property` method is provided to declare table columns, and their properties. The first argument to `property` is the column name, while subsequent hash arguments are used to provide information about properties.
 
 The `type` argument represents the data type of the column. Supported data types by Mgt are:
 
@@ -93,7 +93,7 @@ All controllers should inherit from the BaseController class provided by Mgt to 
 A sample structure for a controller file is:
 
 ```ruby
-class todoController < Mgt::BaseController
+class TodoController < Mgt::BaseController
   def index
     @todos = Todo.all
   end

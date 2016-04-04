@@ -23,6 +23,7 @@ module Mgt
           placeholders << match[1..-1].freeze
           "(?<#{placeholders.last}>[^/?#]+)"
         end
+
         [/^#{path}$/, placeholders]
       end
 

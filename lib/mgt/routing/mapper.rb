@@ -23,6 +23,7 @@ module Mgt
           placeholders.each do |placeholder|
             @request.update_param(placeholder, match_data[placeholder])
           end
+
           true
         end
       end
