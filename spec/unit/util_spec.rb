@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe "Utility methods" do
-  context "#to_snake_case" do
+  describe "#to_snake_case" do
     context "PersonController" do
       it { expect("PersonController".to_snake_case).to eq "person_controller" }
     end
@@ -27,19 +27,21 @@ describe "Utility methods" do
     end
   end
 
-  context "#to_camel_case" do
+  describe "#to_camel_case" do
     context "person_controller" do
       it { expect("person_controller".to_camel_case).to eq "PersonController" }
     end
+
     context "person__todo_app" do
       it { expect("person__todo_app".to_camel_case).to eq "PersonTodoApp" }
     end
+
     context "person" do
       it { expect("person".to_camel_case).to eq "Person" }
     end
   end
 
-  context "#to_constant" do
+  describe "#to_constant" do
     context "`Hash`" do
       it { expect("Hash".to_constant).to eq Hash }
     end
@@ -53,7 +55,7 @@ describe "Utility methods" do
     end
   end
 
-  context "#to_plural" do
+  describe "#to_plural" do
     context "girl" do
       it { expect("girl".to_plural).to eq "girls" }
     end

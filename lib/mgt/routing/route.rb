@@ -1,4 +1,4 @@
-require "mgt/util"
+require "mgt/utilities/util"
 module Mgt
   module Routing
     class Route
